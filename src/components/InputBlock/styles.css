@@ -1,0 +1,31 @@
+.input-container {
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 1.2em;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.input-element {
+  font-size: 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+}
+
+.submit {
+  font-size: 1.15em;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  background-color: #87A1F1;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}

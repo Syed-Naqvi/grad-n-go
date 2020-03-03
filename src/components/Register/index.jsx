@@ -17,6 +17,9 @@ const Register = () => {
 	return (
 		<div className="register-component">
       <div className="register-sub-component">
+        <div className="register-title">
+          Register
+        </div>
   			<InputBlock
   				label={"Email"}
   				id="email"

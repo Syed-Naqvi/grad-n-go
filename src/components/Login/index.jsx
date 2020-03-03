@@ -17,6 +17,9 @@ const Login = () => {
 	return (
 		<div className="login-component">
 			<div className="login-sub-component">
+        <div className="login-title">
+          Login
+        </div>
 				<InputBlock
 					label={"Email"}
 					id="email"

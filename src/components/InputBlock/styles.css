@@ -19,13 +19,3 @@
   padding: 10px;
   outline: none;
 }
-
-.submit {
-  font-size: 1.15em;
-  text-transform: uppercase;
-  padding: 10px 15px;
-  background-color: #87A1F1;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-}

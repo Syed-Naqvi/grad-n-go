@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputBlock from "../InputBlock";
 import { register } from "../../firebase/auth";
 import {Link} from "react-router-dom";
-
+import Logo from "./logo.png";
 import "./styles.css";
 
 const Register = () => {
@@ -17,6 +17,7 @@ const Register = () => {
 	return (
 		<div className="register-component">
       <div className="register-sub-component">
+	  <img src={Logo} className="homepageImage"alt="Homepage Logo"/>
         <div className="register-title">
           Register
         </div>

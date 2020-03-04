@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import InputBlock from "../InputBlock";
 import { login } from "../../firebase/auth";
+import Logo from "./logo.png";
 
 import "./styles.css";
 
@@ -17,6 +18,7 @@ const Login = () => {
 	return (
 		<div className="login-component">
 			<div className="login-sub-component">
+		<img src={Logo} className="homepageImage"alt="Homepage Logo"/>
         <div className="login-title">
           Login
         </div>

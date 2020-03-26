@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputBlock from "../InputBlock";
 import { register } from "../../firebase/auth";
 import {Link} from "react-router-dom";
-import Logo from "./logo.png";
+import Logo from "../../assets/logo.png";
 import "./styles.css";
 
 const Register = () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import InputBlock from "../InputBlock";
 import { login } from "../../firebase/auth";
-import Logo from "./logo.png";
+import Logo from "../../assets/logo.png";
 
 import "./styles.css";
 

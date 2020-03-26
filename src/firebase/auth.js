@@ -5,10 +5,10 @@ const login = (email, password) => {
 		.auth()
 		.signInWithEmailAndPassword(email, password)
 		.then(() => {
-			alert(`Login Successful as ${email}`);
+			console.log(`Login Successful as ${email}`);
 		})
 		.catch(error => {
-			alert("error logging in");
+			console.log("error logging in");
 		});
 };
 
@@ -17,11 +17,16 @@ const register = (email, password) => {
 		.auth()
 		.createUserWithEmailAndPassword(email, password)
 		.then(() => {
-			alert(`Created User as ${email}`);
+			console.log(`Created User as ${email}`);
 		})
 		.catch(error => {
-			alert("error registering", error);
+			console.log("error registering", error);
 		});
 };
+	
 
-export { login, register };
+const logout = () => {
+	firebase.auth().signOut();
+};
+
+export { login, register, logout };

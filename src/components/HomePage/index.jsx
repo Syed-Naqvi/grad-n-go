@@ -80,7 +80,10 @@ const HomePage = () => {
 							.doc(user.uid)
 							.set({
 								name: name,
+								PhoneNumber: phoneNumber,
 								major: major,
+								GraduationDate: graduationDate,
+								Location: location,
 								userID: user.uid
 							});
 					});

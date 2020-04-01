@@ -1,7 +1,12 @@
 .App {
   text-align: center;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: #F5F5F5;
+  min-height: 100vh !important;
+  min-width: 100vw !important;
   color: #3C3C3C; 
+  background-color: #47abe0;
+}
+
+html, body{
+  height: 100% !important;
+  width: 100% !important;
 }

@@ -1,3 +1,5 @@
+
+
 .profile-component {
   margin: auto;
   width: 450px;
@@ -39,4 +41,48 @@
   color: #FF0000;
   border: none;
   border-radius: 5px;
+}
+
+.header{
+  width:100%;
+  height:10vh;
+  background-image: linear-gradient(#0000CD, #47abe0);
+}
+
+.headerImage {
+  height:100%;
+  object-fit: contain;
+}
+
+.theContainer{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.homepageButtons{
+  height: 200px;
+  width: 200px;
+  border-radius: 400rem;
+  margin: 15px;
+}
+
+.homepageBody{
+  margin: auto;
+  width: 100%;
+  height: 85vh;
+  align-content: center;
+}
+
+.buttonDiv{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.countdown{
+  margin-top: 20px;
+  font-size: 80px;
+  color: red;
 }

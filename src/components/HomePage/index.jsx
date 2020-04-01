@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-
+import {Modal, Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../firebase/auth";
 import firebase, { db } from "../../firebase/firebase";
 import InputBlock from "../InputBlock";
 import "./styles.css";
-
+import Logo from "../../assets/logo.png";
 const HomePage = () => {
 	const [loginAction, setLoginAction] = useState(<></>);
 	const [name, setName] = useState("");
@@ -13,6 +14,19 @@ const HomePage = () => {
 	const [major, setMajor] = useState("");
 	const [graduationDate, setGraduationDate] = useState("");
 	const [location, setLocation] = useState("");
+	
+	
+	const [showSettings, setShowSettings] = useState(false);
+	const handleCloseSettings = () => setShowSettings(false);
+	const handleShowSettings = () => setShowSettings(true);
+
+	const [showSearch, setShowSearch] = useState(false);
+	const handleCloseSearch = () => setShowSearch(false);
+	const handleShowSearch= () => setShowSearch(true);
+
+	const [showJobs, setShowJobs] = useState(false);
+	const handleCloseJobs = () => setShowJobs(false);
+	const handleShowJobs= () => setShowJobs(true);
 
 	const updateLoginStatus = () => {
 		firebase.auth().onAuthStateChanged(user => {
@@ -27,7 +41,68 @@ const HomePage = () => {
 	}, []);
 
 	return (
-		<div className="profile-component">
+		<div className= "theContainer">
+		<div className='header'>
+			<img src={Logo} className="headerImage" alt="Homepage Logo" /> 
+		</div>
+		<div className="homepageBody">
+			<h1 className= "countdown"> 00:00:00:00:00</h1>
+			<div className="buttonDiv">
+				<Button className= "homepageButtons" onClick={handleShowSettings}>
+				Edit Your Information
+				</Button>
+				<Button className= "homepageButtons" onClick={handleShowSearch}>
+				Search for Jobs
+				</Button>
+				<Button className= "homepageButtons" onClick={handleShowJobs}>
+				Check your Jobs
+				</Button>
+			</div>
+		</div>
+
+
+
+
+
+
+		<Modal show={showSearch} onHide={handleCloseSearch}>
+			<Modal.Header closeButton>
+			<Modal.Title>Modal heading</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+			<Modal.Footer>
+			<Button variant="secondary" onClick={handleCloseSearch}>
+				Close
+			</Button>
+			<Button variant="primary" onClick={handleCloseSearch}>
+				Save Changes
+			</Button>
+			</Modal.Footer>
+      	</Modal>
+		
+		  <Modal show={showJobs} onHide={handleCloseJobs}>
+			<Modal.Header closeButton>
+			<Modal.Title>Modal heading</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+			<Modal.Footer>
+			<Button variant="secondary" onClick={handleCloseJobs}>
+				Close
+			</Button>
+			<Button variant="primary" onClick={handleCloseJobs}>
+				Save Changes
+			</Button>
+			</Modal.Footer>
+      	</Modal>
+
+		<Modal show={showSettings} onHide={handleCloseSettings}>
+			<Modal.Header closeButton>
+			<Modal.Title>Edit Your Information</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+
+			</Modal.Body>
+			<div className="profile-component ">
 		<div className="profile-sub-component">
 		<div className="profile-title">Profile</div>
 
@@ -102,8 +177,17 @@ const HomePage = () => {
 				>
 					logout
 				</button>
+				
 		</div>
 		</div>
+		</div>
+			
+			<Modal.Footer>
+			<Button variant="secondary" onClick={handleCloseSettings}>
+				Close
+			</Button>
+			</Modal.Footer>
+		</Modal>
 		</div>
 
 	);

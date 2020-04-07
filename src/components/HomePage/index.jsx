@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import {Modal, Button} from 'react-bootstrap';
@@ -14,8 +16,8 @@ const HomePage = () => {
 	const [major, setMajor] = useState("");
 	const [graduationDate, setGraduationDate] = useState("");
 	const [location, setLocation] = useState("");
-	
-	
+
+
 	const [showSettings, setShowSettings] = useState(false);
 	const handleCloseSettings = () => setShowSettings(false);
 	const handleShowSettings = () => setShowSettings(true);
@@ -40,13 +42,81 @@ const HomePage = () => {
 		updateLoginStatus();
 	}, []);
 
+	class Countdown extends React.Component {
+	    state = {
+					months: undefined,
+					days: undefined,
+	        hours: undefined,
+	        minutes: undefined,
+	        seconds: undefined
+	    };
+
+
+	    componentDidMount() {
+	        this.interval = setInterval(() => {
+	            const { timeTillDate, timeFormat } = this.props;
+	            const then = moment(timeTillDate, timeFormat);
+	            const now = moment();
+	            const countdown = moment(then - now);
+							const months = countdown.format("MM");
+							const days = countdown.format('D');
+	            const hours = countdown.format('HH');
+	            const minutes = countdown.format('mm');
+	            const seconds = countdown.format('ss');
+
+	            this.setState({months, days, hours, minutes, seconds });
+	        }, 1000);
+	    }
+
+	    componentWillUnmount() {
+	        if (this.interval) {
+	            clearInterval(this.interval);
+	        }
+	    }
+
+	    render() {
+	        const {months, days, hours, minutes, seconds } = this.state;
+
 	return (
+
+		<div>
+				<h1>Countdown</h1>
+				<div className="countdown-wrapper">
+				<div className="countdown-item">
+						{months}
+						<span>months</span>
+						</div>
+						<div className="countdown-item">
+								{days}
+								<span>days</span>
+						</div>
+						<div className="countdown-item">
+								{hours}
+								<span>hours</span>
+						</div>
+						<div className="countdown-item">
+								{minutes}
+								<span>minutes</span>
+						</div>
+						<div className="countdown-item">
+								{seconds}
+								<span>seconds</span>
+						</div>
+				</div>
+		</div>
+
+	);
+}
+}
+
+return(
+
 		<div className= "theContainer">
 		<div className='header'>
-			<img src={Logo} className="headerImage" alt="Homepage Logo" /> 
+			<img src={Logo} className="headerImage" alt="Homepage Logo" />
 		</div>
 		<div className="homepageBody">
-			<h1 className= "countdown"> 00:00:00:00:00</h1>
+			<h1 className= "countdown"><Countdown timeTillDate="07 26 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" /></h1>
 			<div className="buttonDiv">
 				<Button className= "homepageButtons" onClick={handleShowSettings}>
 				Edit Your Information
@@ -59,11 +129,6 @@ const HomePage = () => {
 				</Button>
 			</div>
 		</div>
-
-
-
-
-
 
 		<Modal show={showSearch} onHide={handleCloseSearch}>
 			<Modal.Header closeButton>
@@ -79,7 +144,7 @@ const HomePage = () => {
 			</Button>
 			</Modal.Footer>
       	</Modal>
-		
+
 		  <Modal show={showJobs} onHide={handleCloseJobs}>
 			<Modal.Header closeButton>
 			<Modal.Title>Modal heading</Modal.Title>
@@ -138,6 +203,7 @@ const HomePage = () => {
 				value={graduationDate}
 				onChange={setGraduationDate}
 				placeholder={"Example: May 2020"}
+				//placeholder={"Example: 05 26 2020, 6:00 am"}
 			/>
 			<InputBlock
 				label={"Location"}
@@ -177,11 +243,11 @@ const HomePage = () => {
 				>
 					logout
 				</button>
-				
+
 		</div>
 		</div>
 		</div>
-			
+
 			<Modal.Footer>
 			<Button variant="secondary" onClick={handleCloseSettings}>
 				Close
@@ -192,5 +258,6 @@ const HomePage = () => {
 
 	);
 };
+
 
 export default HomePage;

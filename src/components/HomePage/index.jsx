@@ -14,6 +14,9 @@ import "./styles.css";
 import Logo from "../../assets/logo.png";
 import LinkedIn from "../../assets/linkedin.png";
 import Glassdoor from "../../assets/glassdoor.png";
+import Check from "./check.png";
+import Search from "./search.png";
+import Edit from "./edit.png";
 
 const HomePage = () => {
 	const [loginAction, setLoginAction] = useState(<></>);
@@ -122,13 +125,13 @@ const HomePage = () => {
 				</h1>
 				<div className="buttonDiv">
 					<Button className="homepageButtons" onClick={handleShowSettings}>
-						Edit Your Information
+						<img src={Edit} className="homepageImages" alt="Edit Your Profile"/>
 					</Button>
 					<Button className="homepageButtons" onClick={handleShowSearch}>
-						Search for Jobs
+						<img src={Search} className="homepageImages" alt="Search for Jobs"/>
 					</Button>
 					<Button className="homepageButtons" onClick={handleShowJobs}>
-						Check your Jobs
+						<img src={Check} className="homepageImages" alt="Check your Jobs"/>
 					</Button>
 				</div>
 			</div>

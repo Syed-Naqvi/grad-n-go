@@ -65,12 +65,11 @@
 }
 
 .homepageButtons{
-  height: 200px;
-  width: 200px;
   border-radius: 400rem;
   margin: 15px;
+  padding: 80px;
 }
-
+.
 .homepageBody{
   margin: auto;
   width: 100%;
@@ -80,10 +79,16 @@
 
 .buttonDiv{
   position: absolute;
+  padding-top: 15%;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
+}
+
+.homepageImages{
+  height: 95%;
+  width: 95%;
 }
 
 .job-board-logo {

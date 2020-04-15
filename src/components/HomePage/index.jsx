@@ -1,5 +1,10 @@
-import moment from 'moment';
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+
+import moment from 'moment';
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import {Modal, Button} from 'react-bootstrap';
@@ -9,12 +14,13 @@ import firebase, { db } from "../../firebase/firebase";
 import InputBlock from "../InputBlock";
 import "./styles.css";
 import Logo from "../../assets/logo.png";
+
 const HomePage = () => {
 	const [loginAction, setLoginAction] = useState(<></>);
 	const [name, setName] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [major, setMajor] = useState("");
-	const [graduationDate, setGraduationDate] = useState("");
+	const [graduationDate, setGraduationDate] = useState(new Date());
 	const [location, setLocation] = useState("");
 
 
@@ -30,7 +36,7 @@ const HomePage = () => {
 	const handleCloseJobs = () => setShowJobs(false);
 	const handleShowJobs= () => setShowJobs(true);
 
-	const updateLoginStatus = () => {
+const updateLoginStatus = () => {
 		firebase.auth().onAuthStateChanged(user => {
 			if (!user) {
 				setLoginAction(<Redirect to="/login" />);
@@ -41,6 +47,8 @@ const HomePage = () => {
 	useEffect(() => {
 		updateLoginStatus();
 	}, []);
+
+
 
 	class Countdown extends React.Component {
 	    state = {
@@ -54,8 +62,10 @@ const HomePage = () => {
 
 	    componentDidMount() {
 	        this.interval = setInterval(() => {
-	            const { timeTillDate, timeFormat } = this.props;
-	            const then = moment(timeTillDate, timeFormat);
+	            //const { timeTillDate, timeFormat } = this.props;
+							//const {datepicker} = this.props;
+							const then = moment(graduationDate);
+							//const then = moment(timeTillDate, timeFormat);
 	            const now = moment();
 	            const countdown = moment(then - now);
 							const months = countdown.format("MM");
@@ -83,11 +93,11 @@ const HomePage = () => {
 				<h1>Countdown</h1>
 				<div className="countdown-wrapper">
 				<div className="countdown-item">
-						{months}
+						{months - 1}
 						<span>months</span>
 						</div>
 						<div className="countdown-item">
-								{days}
+								{days - 1}
 								<span>days</span>
 						</div>
 						<div className="countdown-item">
@@ -116,7 +126,7 @@ return(
 			<img src={Logo} className="headerImage" alt="Homepage Logo" />
 		</div>
 		<div className="homepageBody">
-			<h1 className= "countdown"><Countdown timeTillDate="07 26 2020, 6:00 am" timeFormat="MM DD YYYY, h:mm a" /></h1>
+			<h1 className= "countdown"><Countdown graduationDate/></h1>
 			<div className="buttonDiv">
 				<Button className= "homepageButtons" onClick={handleShowSettings}>
 				Edit Your Information
@@ -196,15 +206,17 @@ return(
 				onChange={setMajor}
 				placeholder={"Example: Computer Science"}
 			/>
-			<InputBlock
-				label={"Graduation Date"}
-				id="graduation"
-				type="text"
-				value={graduationDate}
-				onChange={setGraduationDate}
-				placeholder={"Example: May 2020"}
-				//placeholder={"Example: 05 26 2020, 6:00 am"}
-			/>
+
+			<DatePicker
+					selected={graduationDate}
+					onChange={date => setGraduationDate(date)}
+					showTimeSelect
+					timeFormat="HH:mm"
+					timeIntervals={15}
+					timeCaption="time"
+					dateFormat="MMMM d, yyyy h:mm aa"
+				/>
+
 			<InputBlock
 				label={"Location"}
 				id="location"
@@ -256,8 +268,10 @@ return(
 		</Modal>
 		</div>
 
-	);
-};
 
+
+	);
+
+};
 
 export default HomePage;

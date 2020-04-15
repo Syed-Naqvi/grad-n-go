@@ -9,6 +9,8 @@ import "./App.css";
 import Register from "./components/Register";
 import HomePage from "./components/HomePage";
 
+
+
 function App() {
 	return (
 		<div className="App">

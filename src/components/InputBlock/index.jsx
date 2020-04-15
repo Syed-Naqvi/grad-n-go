@@ -5,6 +5,7 @@ import "./styles.css";
 const InputBlock = props => {
 	const { label, value, id, type = "text",placeholder, onChange = () => {} } = props;
 
+
 	const [val, setVal] = useState("");
 
 	const changeHandler = e => {

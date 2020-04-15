@@ -82,6 +82,23 @@
   transform: translate(-50%, -50%)
 }
 
+.job-board-logo {
+  height: 60px;
+  width: 60px;
+  margin: 20px;
+}
+
+.job-board-container {
+  font-size: 1.2em;
+  color: black;
+  text-decoration: none;
+}
+
+.job-board-container > a {
+  color: black;
+  text-decoration: none;
+}
+
 /*.countdown{
   margin-top: 20px;
   font-size: 80px;

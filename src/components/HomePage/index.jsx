@@ -9,6 +9,10 @@ import firebase, { db } from "../../firebase/firebase";
 import InputBlock from "../InputBlock";
 import "./styles.css";
 import Logo from "../../assets/logo.png";
+import LinkedIn from "../../assets/linkedin.png";
+import Glassdoor from "../../assets/glassdoor.png";
+
+
 const HomePage = () => {
 	const [loginAction, setLoginAction] = useState(<></>);
 	const [name, setName] = useState("");
@@ -132,9 +136,24 @@ return(
 
 		<Modal show={showSearch} onHide={handleCloseSearch}>
 			<Modal.Header closeButton>
-			<Modal.Title>Modal heading</Modal.Title>
+			<Modal.Title>Search For Jobs</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+			<Modal.Body>
+        <div className="job-board-container">
+          <a href="https://www.linkedin.com/jobs/search/" target="_blank" rel="noopener noreferrer">
+            <div>
+              <img className = "job-board-logo" src={LinkedIn} alt="" />
+              Search on LinkedIn
+            </div>
+          </a>
+          <a href="https://www.glassdoor.com" target="_blank" rel="noopener noreferrer">
+            <div>
+              <img className = "job-board-logo" src={Glassdoor} alt ="" />
+              Search on Glassdoor
+            </div>
+          </a>
+        </div>
+      </Modal.Body>
 			<Modal.Footer>
 			<Button variant="secondary" onClick={handleCloseSearch}>
 				Close

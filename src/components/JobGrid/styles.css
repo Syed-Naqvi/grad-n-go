@@ -1,0 +1,13 @@
+.jobs-super-container {
+  font-size: 1.3em;
+  font-weight: bold;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.jobs-container {
+  width: 15vw;
+  height: 100%;
+  box-sizing: border-box;
+}

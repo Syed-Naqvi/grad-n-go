@@ -17,6 +17,7 @@ import Glassdoor from "../../assets/glassdoor.png";
 import Check from "./check.png";
 import Search from "./search.png";
 import Edit from "./edit.png";
+import JobGrid from "../JobGrid";
 
 const HomePage = () => {
 	const [loginAction, setLoginAction] = useState(<></>);
@@ -172,11 +173,13 @@ const HomePage = () => {
 					</Button>
 				</Modal.Footer>
 			</Modal>
-			<Modal show={showJobs} onHide={handleCloseJobs}>
+			<Modal show={showJobs} onHide={handleCloseJobs} size="xl">
 				<Modal.Header closeButton>
 					<Modal.Title>Modal heading</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+				<Modal.Body>
+          <JobGrid />
+        </Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleCloseJobs}>
 						Close

@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Col, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { logout } from "../../firebase/auth";
 import firebase, { db } from "../../firebase/firebase";
@@ -45,7 +45,9 @@ const HomePage = () => {
 	useEffect(() => {
 		updateLoginStatus();
 	}, []);
+	const saveChanges = () => {
 
+	}
 	class Countdown extends React.Component {
 		state = {
 			months: undefined,
@@ -157,19 +159,47 @@ const HomePage = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
+ 
 							<div>
 								<img className="job-board-logo" src={Glassdoor} alt="" />
 								Search on Glassdoor
 							</div>
 						</a>
+						<Form>
+							<Form.Row>
+								<Col>
+								<Form.Group	controlId="JobType">
+									<Form.Control placeholder="Job Type" />
+								</Form.Group>
+								</Col>
+								<Col>
+								<Form.Group controlID="Location">
+									<Form.Control as="select" multiple>
+										<option value="1132348">New York City</option>
+										<option value="1154532">Boston</option>
+										<option value="1147401">San Francisco</option>
+										<option value="1146821">Los Angeles</option>
+										<option value="1150505">Seattle</option>
+										<option value="1151614">Portland</option>
+									</Form.Control>
+								</Form.Group>
+								</Col>
+							</Form.Row>
+							<Form.Row>
+								<Button onClick = {() => window.location.assign('https://www.glassdoor' + '.com')}> Execute your Search </Button>
+							</Form.Row>
+							{/*<Form.Row>
+								<Form.Group id="formGridCheckbox">
+   									<Form.Check type="checkbox" label="Check me out" />
+									<Form.Check type="checkbox" label="Check me out" />
+ 								</Form.Group>
+							</Form.Row> */}
+						</Form>
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleCloseSearch}>
 						Close
-					</Button>
-					<Button variant="primary" onClick={handleCloseSearch}>
-						Save Changes
 					</Button>
 				</Modal.Footer>
 			</Modal>

@@ -45,9 +45,7 @@ const HomePage = () => {
 	useEffect(() => {
 		updateLoginStatus();
 	}, []);
-	const saveChanges = () => {
 
-	}
 	class Countdown extends React.Component {
 		state = {
 			months: undefined,
@@ -56,6 +54,14 @@ const HomePage = () => {
 			minutes: undefined,
 			seconds: undefined,
 		};
+
+		handleChange(){
+  			this.setState({ selection: this.inputId.value });
+		}
+		
+		  handleSubmit(event) {
+			console.log(this.id.location.value);
+		  }
 		componentDidMount() {
 			this.interval = setInterval(() => {
 				const {DatePicker} = this.props;
@@ -70,13 +76,16 @@ const HomePage = () => {
 				this.setState({ months, days, hours, minutes, seconds });
 			}, 1000);
 		}
+		handleChange(event) {
+			this.setState({id: event.target.value});
+		  }
 		componentWillUnmount() {
 			if (this.interval) {
 				clearInterval(this.interval);
 			}
 		}
 		render() {
-			const { months, days, hours, minutes, seconds } = this.state;
+			const { months, days, hours, minutes, seconds} = this.state;
 			return (
 				<div>
 					{loginAction}
@@ -165,7 +174,7 @@ const HomePage = () => {
 								Search on Glassdoor
 							</div>
 						</a>
-						<Form>
+						<Form onSubmit={() => this.handleSubmit}>
 							<Form.Row>
 								<Col>
 								<Form.Group	controlId="JobType">
@@ -173,9 +182,9 @@ const HomePage = () => {
 								</Form.Group>
 								</Col>
 								<Col>
-								<Form.Group controlID="Location">
-									<Form.Control as="select" multiple>
-										<option value="1132348">New York City</option>
+								<Form.Group controlId="Location">
+									<Form.Control as="select" multiple inputRef={ id => this.inputId= id} onChange={() => this.handleChange}>
+										<option value="1132348" selected>New York City</option>
 										<option value="1154532">Boston</option>
 										<option value="1147401">San Francisco</option>
 										<option value="1146821">Los Angeles</option>
@@ -186,14 +195,9 @@ const HomePage = () => {
 								</Col>
 							</Form.Row>
 							<Form.Row>
-								<Button onClick = {() => window.location.assign('https://www.glassdoor' + '.com')}> Execute your Search </Button>
+								<input type="submit" value="Submit" />
 							</Form.Row>
-							{/*<Form.Row>
-								<Form.Group id="formGridCheckbox">
-   									<Form.Check type="checkbox" label="Check me out" />
-									<Form.Check type="checkbox" label="Check me out" />
- 								</Form.Group>
-							</Form.Row> */}
+								{ /*window.location.assign('https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=&locT=C&locId='+ Location.value +'&jobType=')*/}
 						</Form>
 					</div>
 				</Modal.Body>

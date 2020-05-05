@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { Modal, Button, Col, Form} from "react-bootstrap";
+import { Modal, Button, Col,Row, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { logout } from "../../firebase/auth";
 import firebase, { db } from "../../firebase/firebase";
@@ -26,6 +26,9 @@ const HomePage = () => {
 	const [major, setMajor] = useState("");
 	const [graduationDate, setGraduationDate] = useState(new Date());
 	const [location, setLocation] = useState("");
+	const [searchLocation, setSearchLocation] = useState("");
+	const [searchId, setSearchId] = useState("");
+	const [jobType, setJobType] = useState("");
 	const [showSettings, setShowSettings] = useState(false);
 	const handleCloseSettings = () => setShowSettings(false);
 	const handleShowSettings = () => setShowSettings(true);
@@ -35,6 +38,8 @@ const HomePage = () => {
 	const [showJobs, setShowJobs] = useState(false);
 	const handleCloseJobs = () => setShowJobs(false);
 	const handleShowJobs = () => setShowJobs(true);
+	const handleChangeLocation = (searchLocation) => setSearchLocation(searchLocation);
+	const handleChangeId = (searchId) => setSearchId(searchId);
 	const updateLoginStatus = () => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (!user) {
@@ -47,6 +52,7 @@ const HomePage = () => {
 	}, []);
 
 	class Countdown extends React.Component {
+	
 		state = {
 			months: undefined,
 			days: undefined,
@@ -54,14 +60,7 @@ const HomePage = () => {
 			minutes: undefined,
 			seconds: undefined,
 		};
-
-		handleChange(){
-  			this.setState({ selection: this.inputId.value });
-		}
 		
-		  handleSubmit(event) {
-			console.log(this.id.location.value);
-		  }
 		componentDidMount() {
 			this.interval = setInterval(() => {
 				const {DatePicker} = this.props;
@@ -73,12 +72,10 @@ const HomePage = () => {
 				const hours = countdown.format("HH");
 				const minutes = countdown.format("mm");
 				const seconds = countdown.format("ss");
-				this.setState({ months, days, hours, minutes, seconds });
+				this.setState({ months, days, hours, minutes, seconds});
 			}, 1000);
 		}
-		handleChange(event) {
-			this.setState({id: event.target.value});
-		  }
+		
 		componentWillUnmount() {
 			if (this.interval) {
 				clearInterval(this.interval);
@@ -174,31 +171,23 @@ const HomePage = () => {
 								Search on Glassdoor
 							</div>
 						</a>
-						<Form onSubmit={() => this.handleSubmit}>
-							<Form.Row>
-								<Col>
-								<Form.Group	controlId="JobType">
-									<Form.Control placeholder="Job Type" />
-								</Form.Group>
-								</Col>
-								<Col>
-								<Form.Group controlId="Location">
-									<Form.Control as="select" multiple inputRef={ id => this.inputId= id} onChange={() => this.handleChange}>
-										<option value="1132348" selected>New York City</option>
-										<option value="1154532">Boston</option>
-										<option value="1147401">San Francisco</option>
-										<option value="1146821">Los Angeles</option>
-										<option value="1150505">Seattle</option>
-										<option value="1151614">Portland</option>
-									</Form.Control>
-								</Form.Group>
-								</Col>
-							</Form.Row>
-							<Form.Row>
-								<input type="submit" value="Submit" />
-							</Form.Row>
+						<Row>
+							<Col>
+								<InputBlock type="text" placeholder="Job Title" value={jobType} name="jobType" onChange={setJobType}/>
+							</Col>
+						</Row>
+						<Row>
+						<Col>
+							<p> Looking for jobs in {searchLocation}</p>
+							<Row> 
+								<Button onClick= {() => {handleChangeLocation("New York City"); handleChangeId("1132348")}} > New York City </Button> 
+							</Row>
+						</Col>
+						</Row>
+						<Row>
+							<Button onClick={() => console.log(jobType)}> Search </Button>
+						</Row>
 								{ /*window.location.assign('https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=&locT=C&locId='+ Location.value +'&jobType=')*/}
-						</Form>
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
@@ -209,7 +198,7 @@ const HomePage = () => {
 			</Modal>
 			<Modal show={showJobs} onHide={handleCloseJobs} size="xl">
 				<Modal.Header closeButton>
-					<Modal.Title>Modal heading</Modal.Title>
+					<Modal.Title> Edit Your Jobs </Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
           <JobGrid />

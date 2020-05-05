@@ -178,14 +178,23 @@ const HomePage = () => {
 						</Row>
 						<Row>
 						<Col>
-							<p> Looking for jobs in {searchLocation}</p>
-							<Row> 
-								<Button onClick= {() => {handleChangeLocation("New York City"); handleChangeId("1132348")}} > New York City </Button> 
+							<Row className="jobHeader">
+								<p className="jobHeader"> Looking for jobs in <span className="jobLocation">{searchLocation}</span></p>
+							</Row>
+							<Row className="jobRows"> 
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("New York City"); handleChangeId("1132348")}} >New York City</Button>
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("Boston"); handleChangeId("1154532")}} >Boston</Button>
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("San Francisco"); handleChangeId("1147401")}} >San Francisco</Button>
+							</Row>
+							<Row className="jobRows">
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("Los Angeles"); handleChangeId("1146821")}} >Los Angeles</Button>
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("Seattle"); handleChangeId("1150505")}} >Seattle</Button>
+								<Button className="jobButtons" onClick= {() => {handleChangeLocation("Portland"); handleChangeId("1151614")}} >Portland</Button> 
 							</Row>
 						</Col>
 						</Row>
-						<Row>
-							<Button onClick={() => console.log(jobType)}> Search </Button>
+						<Row className="jobRows">
+							<Button size="lg" variant="outline-danger" onClick={() => console.log(jobType)}> Search </Button>
 						</Row>
 								{ /*window.location.assign('https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=&locT=C&locId='+ Location.value +'&jobType=')*/}
 					</div>

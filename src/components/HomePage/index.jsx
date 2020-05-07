@@ -40,6 +40,9 @@ const HomePage = () => {
 	const handleShowJobs = () => setShowJobs(true);
 	const handleChangeLocation = (searchLocation) => setSearchLocation(searchLocation);
 	const handleChangeId = (searchId) => setSearchId(searchId);
+	const handleChangeJobType = (jobType) => {
+		setJobType(jobType.split(' ').join('+'));
+	}
 	const updateLoginStatus = () => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (!user) {
@@ -194,9 +197,8 @@ const HomePage = () => {
 						</Col>
 						</Row>
 						<Row className="jobRows">
-							<Button size="lg" variant="outline-danger" onClick={() => console.log(jobType)}> Search </Button>
+							<Button size="lg" variant="outline-danger" onClick={() => window.location.assign('https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=' + jobType.split(' ').join('+') +'&locT=C&locId='+ searchId +'&jobType=')}> Search </Button>
 						</Row>
-								{ /*window.location.assign('https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=&sc.keyword=&locT=C&locId='+ Location.value +'&jobType=')*/}
 					</div>
 				</Modal.Body>
 				<Modal.Footer>

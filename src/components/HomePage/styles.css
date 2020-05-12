@@ -67,7 +67,7 @@
 .homepageButtons{
   border-radius: 400rem;
   margin: 15px;
-  padding: 50px;
+  padding: 40px;
 }
 .
 .homepageBody{
@@ -101,11 +101,7 @@
   font-size: 1.2em;
   color: black;
   text-decoration: none;
-}
-
-.job-board-container > a {
-  color: black;
-  text-decoration: none;
+  justify-content: center;
 }
 
 /*.countdown{
@@ -178,4 +174,8 @@ h1 {
 .searchButton{
   color: #DC143C;
   padding: 5px;
+}
+
+.homeGlass{
+  justify-content: center;
 }

@@ -17,6 +17,7 @@ import Glassdoor from "../../assets/glassdoor.png";
 import Check from "./check.png";
 import Search from "./search.png";
 import Edit from "./edit.png";
+import New from "./new.png";
 import ApplicationImg from "../../assets/application.svg";
 import JobGrid from "../JobGrid";
 import AddJobs from "../AddJobs";
@@ -159,7 +160,7 @@ const HomePage = () => {
 					</Button>
 					<Button className="homepageButtons" onClick={handleShowAddJobs}>
 						<img
-							src={ApplicationImg}
+							src={New}
 							className="homepageImages"
 							alt="Add a Job"
 						/>
@@ -172,29 +173,14 @@ const HomePage = () => {
 				</Modal.Header>
 				<Modal.Body>
 					<div className="job-board-container">
-						<a
-							href="https://www.linkedin.com/jobs/search/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<div>
-								<img className="job-board-logo" src={LinkedIn} alt="" />
-								Search on LinkedIn
+							<div className="homeGlass">
+								<div><img className="job-board-logo" src={Glassdoor} alt="" />
+								Search on Glassdoor</div>
 							</div>
-						</a>
-						<a
-							href="https://www.glassdoor.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<div>
-								<img className="job-board-logo" src={Glassdoor} alt="" />
-								Search on Glassdoor
-							</div>
-						</a>
 						<Row>
 							<Col>
 								<InputBlock
+									className="homeInput"
 									type="text"
 									placeholder="Job Title"
 									value={jobType}

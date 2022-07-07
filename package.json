@@ -11,7 +11,7 @@
     "firebase": "^7.9.3",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.13.0",
     "react-big-calendar": "^0.24.3",
     "react-bootstrap": "^1.0.0",
